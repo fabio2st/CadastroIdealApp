@@ -6,38 +6,33 @@ Imports System.Threading.Tasks
 Imports System.Windows
 Imports System.Windows.Documents
 Imports Model
-Partial Class PessoasCadastradasCrud
+Imports Controllers
+Class PessoasCadastradasCrud
     Inherits Page
-    Private client As New HttpClient()
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
-        client.BaseAddress = New Uri("https://localhost:5001")
-        client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
-        'client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("text/plain"))
-
     End Sub
-    Async Sub PessoasCadastradasCrud_Loaded(sender As Object, e As RoutedEventArgs)
-        Await PessoaSelectAll()
+    Sub PessoasCadastradasCrud_Loaded(sender As Object, e As RoutedEventArgs)
+        LoadListbox()
     End Sub
     Private Sub EditarButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim pessoaCadastradaEdit As New PessoaCadastradaEdit()
+        Dim pessoa As Pessoa = pessoasCadastradasListBox.SelectedItem
+        Dim pessoaCadastradaEdit As New PessoaCadastradaEdit(pessoa)
         NavigationService.Navigate(pessoaCadastradaEdit)
     End Sub
-    Private Async Sub RemoverButton_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub RemoverButton_Click(sender As Object, e As RoutedEventArgs)
         Dim pessoa As Pessoa = pessoasCadastradasListBox.SelectedItem
         If pessoa IsNot Nothing Then
             If MessageBox.Show("Tem certeza que está removendo " & pessoa.ToString(), Me.Title, MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) Then
-                Await PessoaDelete(pessoa)
+                PessoaDelete(pessoa)
             End If
         End If
     End Sub
-    Private Async Function PessoaSelectAll() As Task
+    Private Async Sub LoadListbox()
         Try
-            Dim response = Await client.GetAsync("/api/Pessoas")
-            response.EnsureSuccessStatusCode()
-            Dim pessoas = Await response.Content.ReadAsAsync(Of IEnumerable(Of Pessoa))()
+            Dim pessoas = Await PessoasController.SelectAll()
             pessoasCadastradasListBox.Items.Clear()
             For Each pessoa As Pessoa In pessoas
                 pessoasCadastradasListBox.Items.Add(pessoa)
@@ -45,14 +40,14 @@ Partial Class PessoasCadastradasCrud
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-    End Function
-    Private Async Function PessoaDelete(pessoa As Pessoa) As Task
+    End Sub
+
+    Private Async Sub PessoaDelete(pessoa As Pessoa)
         Try
-            Dim response = Await client.DeleteAsync($"/api/Pessoas/{pessoa.ID}")
-            Await PessoaSelectAll()
-            'Return response.StatusCode
+            Await PessoasController.Delete(pessoa)
+            LoadListbox()
         Catch ex As Exception
             MessageBox.Show($"A operação falhou: {ex.Message}")
         End Try
-    End Function
+    End Sub
 End Class

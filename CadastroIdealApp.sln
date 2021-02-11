@@ -7,6 +7,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CadastroIdealApp", "Cadastr
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Model", "Model\Model.vbproj", "{762DAEB0-296F-42DB-B040-A2F7188E56A6}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Controllers", "Controllers\Controllers.vbproj", "{3C61AA87-63F3-49F7-956B-6BA5BCEC369C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{762DAEB0-296F-42DB-B040-A2F7188E56A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{762DAEB0-296F-42DB-B040-A2F7188E56A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{762DAEB0-296F-42DB-B040-A2F7188E56A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C61AA87-63F3-49F7-956B-6BA5BCEC369C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C61AA87-63F3-49F7-956B-6BA5BCEC369C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C61AA87-63F3-49F7-956B-6BA5BCEC369C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C61AA87-63F3-49F7-956B-6BA5BCEC369C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
