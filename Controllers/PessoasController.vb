@@ -19,6 +19,23 @@ Public Class PessoasController
             Throw ex
         End Try
     End Function
+    Shared Async Function SelectOne(id As UInteger) As Task(Of Pessoa)
+        Try
+            Dim response As HttpResponseMessage = Await client.GetAsync($"/api/Pessoas/{id}")
+            response.EnsureSuccessStatusCode()
+            Return Await response.Content.ReadAsAsync(Of Pessoa)()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Shared Async Function Update(pessoa As Pessoa) As Task
+        Try
+            Dim response As HttpResponseMessage = Await client.PutAsJsonAsync($"api/Pessoas/{pessoa.ID}", pessoa)
+            response.EnsureSuccessStatusCode()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Shared Async Function Delete(pessoa As Pessoa) As Task
         Try
             Dim response = Await client.DeleteAsync($"/api/Pessoas/{pessoa.ID}")

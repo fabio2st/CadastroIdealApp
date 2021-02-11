@@ -47,7 +47,7 @@ Class PessoasCadastradasCrud
             Await PessoasController.Delete(pessoa)
             LoadListbox()
         Catch ex As Exception
-            MessageBox.Show($"A operação falhou: {ex.Message}")
+            MessageBox.Show($"A operação falhou: {ex.Message}", Me.Title, MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub
 End Class
