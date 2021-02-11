@@ -1,0 +1,3 @@
+﻿Class PessoaCadastradaEdit
+
+End Class
