@@ -7,7 +7,8 @@ Imports Model
 Public Class PessoasController
     Shared client As New HttpClient()
     Shared Sub New()
-        client.BaseAddress = New Uri("https://localhost:5001")
+        'client.BaseAddress = New Uri("https://localhost:5001")
+        client.BaseAddress = New Uri("https://cadastroidealapi20210212012143.azurewebsites.net")
         client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
     End Sub
     Shared Async Function SelectAll() As Task(Of IEnumerable(Of Pessoa))
