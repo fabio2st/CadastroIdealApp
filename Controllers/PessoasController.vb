@@ -36,11 +36,19 @@ Public Class PessoasController
             Throw ex
         End Try
     End Function
+    Shared Async Function Insert(pessoa As Pessoa) As Task
+        Try
+            Dim response As HttpResponseMessage = Await client.PostAsJsonAsync($"api/Pessoas", pessoa)
+            response.EnsureSuccessStatusCode()
+        Catch ex As ArgumentException
+            Throw ex
+        Catch ex As Exception
+            Throw New ArgumentException("Valide os dados inseridos")
+        End Try
+    End Function
     Shared Async Function Delete(pessoa As Pessoa) As Task
         Try
             Dim response = Await client.DeleteAsync($"/api/Pessoas/{pessoa.ID}")
-            'Await SelectAll()
-            'Return response.StatusCode
         Catch ex As Exception
             Throw ex
         End Try

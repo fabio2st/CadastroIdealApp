@@ -5,43 +5,47 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CadastroIdealApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="683"
       Title="Pessoas Cadastradas"
       Loaded="PessoasCadastradasCrud_Loaded">
-    <Grid Margin="10,0,301,33">
+    <Grid Margin="10,0,190,33">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="111*" />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="pessoasCadastradasListBox" Grid.Column="0" Grid.Row="1">
-            <!--<ListBoxItem>Mike</ListBoxItem>
-            <ListBoxItem>Lisa</ListBoxItem>
-            <ListBoxItem>John</ListBoxItem>
-            <ListBoxItem>Mary</ListBoxItem>-->
-        </ListBox>
+        <ListBox x:Name="pessoasCadastradasListBox" 
+                 Grid.Column="0" 
+                 Grid.Row="1" 
+                 Grid.ColumnSpan="2" 
+                 Margin="0,21,10,0"/>
+
         <Button Content="Editar"
                 HorizontalAlignment="Left"
-                Margin="562,80,-198,0" 
+                Margin="246,88,-96,0" 
                 Grid.Row="1" 
                 VerticalAlignment="Top" 
-                Width="125" 
-                Click="EditarButton_Click"/>
+                Width="86" 
+                Click="EditarButton_Click" 
+                Grid.Column="1"/>
         <Button Content="Adicionar" 
                 HorizontalAlignment="Left" 
-                Margin="562,130,-198,0" 
+                Margin="246,137,-96,0" 
                 Grid.Row="1" 
                 VerticalAlignment="Top" 
-                Width="125"/>
+                Width="86" Click="AdicionarButton_Click" 
+                Grid.Column="1"/>
         <Button Content="Remover" 
                 HorizontalAlignment="Left" 
-                Margin="562,180,-198,0" 
+                Margin="246,184,-96,0" 
                 Grid.Row="1" 
                 VerticalAlignment="Top" 
-                Width="125" 
-                Click="RemoverButton_Click"/>
+                Width="86" 
+                Click="RemoverButton_Click" 
+                Grid.Column="1"/>
     </Grid>
 </Page>

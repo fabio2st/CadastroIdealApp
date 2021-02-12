@@ -19,6 +19,17 @@ Class PessoasCadastradasCrud
     End Sub
     Private Sub EditarButton_Click(sender As Object, e As RoutedEventArgs)
         Dim pessoa As Pessoa = pessoasCadastradasListBox.SelectedItem
+        GoToEditPage(pessoa)
+    End Sub
+    Private Sub AdicionarButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim pessoa As New Pessoa()
+        GoToEditPage(pessoa)
+    End Sub
+    Private Sub pessoasCadastradasListBox_MouseDoubleClick(sender As Object, e As MouseButtonEventArgs) Handles pessoasCadastradasListBox.MouseDoubleClick
+        Dim pessoa As Pessoa = pessoasCadastradasListBox.SelectedItem
+        GoToEditPage(pessoa)
+    End Sub
+    Private Sub GoToEditPage(pessoa As Pessoa)
         Dim pessoaCadastradaEdit As New PessoaCadastradaEdit(pessoa)
         NavigationService.Navigate(pessoaCadastradaEdit)
     End Sub
@@ -50,4 +61,5 @@ Class PessoasCadastradasCrud
             MessageBox.Show($"A operação falhou: {ex.Message}", Me.Title, MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub
+
 End Class

@@ -22,11 +22,16 @@ Class PessoaCadastradaEdit
         pessoa.Sobrenome = SobrenomeTextBox.Text
         pessoa.Telefone = TelefoneTextBox.Text
     End Sub
-    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub Button_Click(sender As Object, e As RoutedEventArgs)
         Try
             GetFormValues()
-            PessoasController.Update(pessoa)
+            If pessoa.ID = 0 Then
+                Await PessoasController.Insert(pessoa)
+            Else
+                Await PessoasController.Update(pessoa)
+            End If
             MessageBox.Show("Dados salvos", Me.Title, MessageBoxButton.OK, MessageBoxImage.Information)
+            NavigationService.GoBack()
         Catch ex As Exception
             MessageBox.Show($"A operação falhou: {ex.Message}", Me.Title, MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
